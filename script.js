@@ -12,10 +12,11 @@ for (let n = 0; n < 200; n ++){
 
 //generate inital snow at any coordinate, random radius, random speed
 function createSnowflake(){
+    let r = randomDec(2,5)
     return {
-        x: randomDec(20,1760),
-        r: randomDec(2,5),
-        y: randomDec(20,860),
+        x: randomDec(r,cnv.width - r),
+        r: r,
+        y: randomDec(r,cnv.height - r),
         color : "white",
         speed: randomDec(1,2.5)
     }
@@ -44,7 +45,7 @@ function drawSnowflake(aSnowflake){
 function moveSnowflake(aSnowflake) {
     aSnowflake.y += aSnowflake.speed
     if(aSnowflake.y > cnv.height + aSnowflake.r) {
-        aSnowflake.y = 0 - aSnowflake.r
+        aSnowflake.y = -aSnowflake.r
         aSnowflake.x = randomDec(20,1760)
     }
 }
@@ -65,11 +66,11 @@ function keydownhandler(event) {
 }
 //generate a Snowflake at random x above the canvas cont.
 function skySnowflake(){
-    r = randomDec(2,5)
+    let r = randomDec(2,5)
     return {
-        x: randomDec(20,1760),
+        x: randomDec(r,cnv.width - r),
         r: r,
-        y: 0 - r,
+        y: -r,
         color : "white",
         speed: randomDec(1,2.5)
     }
